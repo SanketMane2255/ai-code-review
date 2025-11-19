@@ -1,6 +1,6 @@
 * {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -19,28 +19,40 @@ main {
   gap: 1rem;
 }
 
+/* Left and right panels */
 main .left,
 main .right {
   height: 100%;
   flex-basis: 50%;
   border-radius: 0.7rem;
+  overflow-y: auto;      
 }
 
+/* LEFT SIDE (Editor) */
 main .left {
   background-color: #000000;
   position: relative;
 }
 
-.left .code,
-.code pre,
-.code pre code {
+.left .code {
   height: 100%;
   width: 100%;
-  margin: 0;
-  border-radius: 0.7rem;
   background-color: #0c0c0c;
+  border-radius: 0.7rem;
+  overflow-y: auto;      
 }
 
+/* Prism / Editor Code Blocks */
+.code pre,
+.code pre code {
+  height: auto;
+  width: 100%;
+  margin: 0;
+  background-color: #0c0c0c;
+  overflow: auto;        
+}
+
+/* Review Button */
 main .left .review {
   position: absolute;
   bottom: 1rem;
@@ -54,10 +66,50 @@ main .left .review {
   border-radius: 0.7rem;
 }
 
-
+/* RIGHT SIDE (Markdown Output) */
 main .right {
   background-color: #343434;
   padding: 1rem 2rem;
-  font-size: 1.3rem;
-  overflow: auto;
+  font-size: 1.1rem;
+  overflow-y: auto;      
+  color: #ffffff;
 }
+
+
+.right pre {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-x: auto;
+  background: #222;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.review {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Disable style */
+.review:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loader (spinner) */
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffffff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
